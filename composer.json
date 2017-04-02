@@ -1,0 +1,23 @@
+{
+    "name": "sharkthefire/calendar-reminder",
+    "description": "Calendar-Reminder Project",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^5.4",
+        "phpdocumentor/phpdocumentor": "dev-master",
+        "squizlabs/php_codesniffer": "^2.6"
+    },
+    "autoload": {
+        "psr-4": {"Calendar-Reminder\\": "src/"}
+    },
+    "config": {
+       "bin-dir": "scripts"
+   },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jennifer Eschenhorn",
+            "email": "jennifer.eschenhorn@jimdo.com"
+        }
+    ]
+}
