@@ -1,11 +1,12 @@
-<?php 
+<?php
 
-namespace CalendarReminder\Calendar;
-
-use CalendarReminder\ConstantCollection;
+namespace CalendarReminder;
 
 class Calendar
 {
+
+    const MAX_YEARS_GIVEN = 2500;
+
     /**
      * @return array
      */
@@ -31,7 +32,7 @@ class Calendar
     {
         $currentYear = (int) date('Y');
 
-        for ($i=$currentYear; $i < ConstantCollection::MAX_YEARS_GIVEN ; $i++) { 
+        for ($i=$currentYear; $i < self::MAX_YEARS_GIVEN ; $i++) {
             $years[] = $i;
         }
         return $years;
