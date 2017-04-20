@@ -5,19 +5,28 @@ namespace CalendarReminder;
 class CalendarReminder
 {
     /** @var array */
-    private $reminders;
+    private $reminders = [];
 
     /**
-     * @param string $date
-     * @param string $content
+     * @param array $reminders
      * @return array
      */
-    public function addReminder(string $date, string $content): array
+    public function addReminders(array $reminders): array
     {
-        return $this->reminders = [
-            $date => [
-                $content
-            ]
-        ];
+
+        foreach ($reminders as $reminder) {
+
+            $date = $reminder->date();
+
+            if (!array_key_exists($date, $this->reminders)) {
+                $this->reminders[$date] = [
+                    $reminder->content()
+                ];
+            } else {
+                $this->reminders[$date][] = $reminder->content();
+            }
+        }
+
+        return $this->reminders;
     }
 }
