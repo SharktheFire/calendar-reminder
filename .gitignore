@@ -1,1 +1,10 @@
 /vendor/
+.DS_Store
+/scripts/composer
+/scripts/jsonlint
+/scripts/phpcbf
+/scripts/phpcs
+/scripts/phpdoc
+/scripts/phpdoc.php
+/scripts/phpunit
+/scripts/validate-json

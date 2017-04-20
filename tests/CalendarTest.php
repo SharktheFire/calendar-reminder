@@ -1,10 +1,8 @@
-<?php 
+<?php
 
-namespace CalendarReminder\Calendar;
+namespace CalendarReminder;
 
 use PHPUnit\Framework\TestCase;
-
-use CalendarReminder\ConstantCollection;
 
 class CalendarTest extends TestCase
 {
@@ -32,16 +30,11 @@ class CalendarTest extends TestCase
         $currentYear = date('Y');
         $yearArray = [];
 
-        for ($i=$currentYear; $i < ConstantCollection::MAX_YEARS_GIVEN ; $i++) {
+        for ($i=$currentYear; $i < Calendar::MAX_YEARS_GIVEN ; $i++) {
             $yearArray[] = $i;
         }
 
         $this->assertEquals($monthArray, $calendar->months());
         $this->assertEquals($yearArray, $calendar->years());
-    }
-
-    public function itShouldHaveCorrectDaysPerMonth()
-    {
-
     }
 }
