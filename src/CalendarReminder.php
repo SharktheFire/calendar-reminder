@@ -15,10 +15,9 @@ class CalendarReminder
     /**
      * @param string $date
      * @param string $content
-     * @return Reminder
      */
-    public function createReminder(string $date, string $content): Reminder
+    public function createReminder(string $date, string $content)
     {
-        return $this->reminderRepository->createReminder($date, $content);
+        $this->reminderRepository->createReminder($date, $content);
     }
 }
