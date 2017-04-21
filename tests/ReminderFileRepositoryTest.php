@@ -48,5 +48,25 @@ class ReminderFileRepositoryTest extends TestCase
         $this->assertEquals($foundReminder->content(), $content);
     }
 
+    private function deleteRecursive($input)
+    {
+        if (is_file($input)) {
+            unlink($input);
+            return;
+        }
+        if (is_dir($input)) {
+            foreach (scandir($input) as $file) {
+                if ($file === '.' || $file === '..') {
+                    continue;
+                }
+                $file = join('/', [$input, $file]);
+                if (is_file($file)) {
+                    unlink($file);
+                    continue;
+                }
+                $this->deleteRecursive($file);
+                rmdir($file);
+            }
+        }
     }
 }
