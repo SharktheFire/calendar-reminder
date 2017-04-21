@@ -7,6 +7,9 @@ class ReminderFileRepository implements ReminderRepository
     /** @avr string */
     private $remindersPath;
 
+    /**
+     * @param string $remindersPath
+     */
     public function __construct(string $remindersPath)
     {
         $this->remindersPath = $remindersPath;
