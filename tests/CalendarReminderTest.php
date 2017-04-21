@@ -30,6 +30,6 @@ class CalendarReminderTest extends TestCase
      */
     public function itShouldCreateReminder()
     {
-        $this->assertInstanceOf('CalendarReminder\Reminder', $this->calendarReminder->createReminder(date('d.m.Y'), 'some content'));
+        $this->calendarReminder->createReminder(date('d.m.Y'), 'some content');
     }
 }
