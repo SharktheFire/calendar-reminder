@@ -46,7 +46,7 @@ class CalendarReminderTest extends TestCase
         $reminders = $this->calendarReminder->createReminder($date, 'some more other content');
 
         foreach ($reminders as $reminder) {
-            $this->assertTrue($this->dummyRepository->shouldReceive('createReminder')->times(3)->with($date, 'some content'));
+            $this->assertTrue($this->dummyRepository->shouldReceive('createReminder')->times(3));
         }
 
         foreach ($this->dummyRepository->findRemindersPerDate() as $date => $reminders) {
