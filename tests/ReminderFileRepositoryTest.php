@@ -48,6 +48,21 @@ class ReminderFileRepositoryTest extends TestCase
         $this->assertEquals($foundReminder->content(), $content);
     }
 
+    /**
+     * @test
+     */
+    public function itShouldBePossibleToAddMoreRemindersToOneDate()
+    {
+        $date = date('d.m.Y');
+        $content = rand(1, 10);
+        for ($i=1; $i < 10; $i++) {
+            $this->reminderRepository->createReminder($date, $content);
+        }
+        var_dump(scandir(self::REMINDERS_ROOT_PATH . '/' . "$date/"));
+        $this->assertEquals(9, scandir(self::REMINDERS_ROOT_PATH . '/' . "$date/"));
+
+    }
+
     private function deleteRecursive($input)
     {
         if (is_file($input)) {
