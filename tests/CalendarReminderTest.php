@@ -9,34 +9,31 @@ class CalendarReminderTest extends TestCase
     /** @var CalendarReminder */
     private $calendarReminder;
 
+    /** @var ReminderFakeRepository */
+    private $dummyRepository;
+
     protected function setUp()
     {
-        $this->calendarReminder = new CalendarReminder();
+        $this->dummyRepository = new ReminderFakeRepository();
+        $this->calendarReminder = new CalendarReminder($this->dummyRepository);
     }
 
     /**
      * @test
      */
-    public function itShouldAddReminders()
+    public function itShouldCreateReminder()
     {
-        $reminderRepository = new ReminderFakeRepository();
-
         $date = date('d.m.Y');
 
-        $reminderArr = [];
+        $reminders = $this->calendarReminder->createReminder($date, 'some content');
+        $reminders = $this->calendarReminder->createReminder($date, 'some other content');
+        $reminders = $this->calendarReminder->createReminder($date, 'some more other content');
 
-        $reminderArr[] = $reminderRepository->createReminder($date, 'some content');
-        $reminderArr[] = $reminderRepository->createReminder($date, 'some other content');
-        $reminderArr[] = $reminderRepository->createReminder($date, 'some more other content');
-        $reminderArr[] = $reminderRepository->createReminder('12.12.2012', 'some content');
-        $reminderArr[] = $reminderRepository->createReminder('12.12.2012', 'some other content');
-        $reminderArr[] = $reminderRepository->createReminder('12.12.2012', 'some more other content');
-
-        $reminders = $this->calendarReminder->addReminders($reminderArr);
-
-        $this->assertEquals('some content', $reminders[$date][0]);
-        $this->assertEquals('some other content', $reminders[$date][1]);
-        $this->assertEquals('some more other content', $reminders[$date][2]);
-        $this->assertEquals(2, count($reminders));
+        foreach ($this->dummyRepository->reminders as $date => $reminders) {
+            foreach ($reminders as $reminder) {
+                $this->assertInstanceOf('CalendarReminder\Reminder', $reminder);
+                $this->assertEquals($date, $reminder->date());
+            }
+        }
     }
 }

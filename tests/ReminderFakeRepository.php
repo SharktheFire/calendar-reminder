@@ -21,7 +21,7 @@ class ReminderFakeRepository implements ReminderRepository
     public function createReminder(string $date, string $content): Reminder
     {
         $reminder = new Reminder($date, $content);
-        $this->reminders[] = $reminder;
+        $this->save($reminder);
         return $reminder;
     }
 
@@ -30,7 +30,7 @@ class ReminderFakeRepository implements ReminderRepository
      */
     public function save(Reminder $reminder)
     {
-        $this->reminders[] = $reminder;
+        $this->reminders[$reminder->date()][] = $reminder;
         $this->saveMethodCalled = true;
     }
 }

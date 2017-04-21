@@ -4,29 +4,21 @@ namespace CalendarReminder;
 
 class CalendarReminder
 {
-    /** @var array */
-    private $reminders = [];
+    /**
+     * @param ReminderRepository $reminderRepository
+     */
+    public function __construct(ReminderRepository $reminderRepository)
+    {
+        $this->reminderRepository = $reminderRepository;
+    }
 
     /**
-     * @param array $reminders
-     * @return array
+     * @param string $date
+     * @param string $content
+     * @return Reminder
      */
-    public function addReminders(array $reminders): array
+    public function createReminder(string $date, string $content): Reminder
     {
-
-        foreach ($reminders as $reminder) {
-
-            $date = $reminder->date();
-
-            if (!array_key_exists($date, $this->reminders)) {
-                $this->reminders[$date] = [
-                    $reminder->content()
-                ];
-            } else {
-                $this->reminders[$date][] = $reminder->content();
-            }
-        }
-
-        return $this->reminders;
+        return $this->reminderRepository->createReminder($date, $content);
     }
 }
