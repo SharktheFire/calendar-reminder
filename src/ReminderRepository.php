@@ -7,9 +7,8 @@ interface ReminderRepository
     /**
      * @param string $date
      * @param string $content
-     * @return Reminder
      */
-    public function createReminder(string $date, string $content): Reminder;
+    public function createReminder(string $date, string $content);
 
     /**
      * @param Reminder $reminder
